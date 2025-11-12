@@ -1,0 +1,32 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "this is namaste react project",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrachiGour2023/namaste-reactjs.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Prachi Gour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrachiGour2023/namaste-reactjs/issues"
+  },
+  "homepage": "https://github.com/PrachiGour2023/namaste-reactjs#readme",
+  "devDependencies": {
+    "parcel": "^2.16.1"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "browserlist": [
+    "last 10 Chrome versions",
+    "last 2 versions"
+  ]
+}
