@@ -1,5 +1,5 @@
 .body {
-  /* width: 80%; */
+  width: 100%;
   /* margin: 10; */
   /* background-color: antiquewhite; */
 }
@@ -31,15 +31,30 @@
   font-size: medium;
 }
 
-.res-container {
+.filter-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
+  align-items: center;
+}
+
+.filter-btn {
+  padding: 12px 30px;
+  border-radius: 10px;
+  border-width: 0px;
+  background-color: rgb(228, 136, 14);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.res-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
 }
 
 .res-card {
-  width: 270px;
-  height: 95%;
   padding: 10px;
   border-radius: 10px;
   object-fit: contain;

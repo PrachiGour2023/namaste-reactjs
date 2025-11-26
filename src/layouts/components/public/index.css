@@ -34,3 +34,16 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+.shimmer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.shimmer-card {
+  background-color: rgb(234, 230, 230);
+  margin: 15px;
+  width: 280px;
+  height: 200px;
+  border-radius: 10px;
+}

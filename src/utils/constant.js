@@ -1,6 +1,9 @@
 export const image_cdn_url =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
+export const landing_page_api_url =
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7527421&lng=75.88371599999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+
 export const foodAppData = {
   banner: [
     "http://tutofox.com/foodapp//banner/banner-1.jpg",

@@ -1,5 +1,3 @@
-import React from "react";
-import "./index.css";
 import {
   FaHome,
   FaHandsHelping,
@@ -7,28 +5,24 @@ import {
   FaCartArrowDown,
 } from "react-icons/fa";
 import { BiSolidOffer } from "react-icons/bi";
+import NavItem from "./NavItems";
 
 function HomePageHeader() {
   return (
-    <div className="header">
-      <div className="logo-container">
+    <div className="flex justify-between shadow-md">
+      <div className="w-15">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiJer5Ed3byD6F_FLDwr8RuwEh_bsmudgzzQ&s"
-          className="logo-design"
+          className="mx-5 my-3"
         />
       </div>
-      <div className="nav-items">
-        <ul className="nav-container">
-          <FaHome />
-          <li>Home</li>
-          <BiSolidOffer />
-          <li>Offer</li>
-          <FaHandsHelping />
-          <li>Help</li>
-          <FaRegUser />
-          <li>Sign In</li>
-          <FaCartArrowDown />
-          <li>Cart</li>
+      <div className="flex">
+        <ul className="flex items-center gap-10 mx-5">
+          <NavItem to={"/"} icon={FaHome} label={"Home"} />
+          <NavItem to={"/offer"} icon={BiSolidOffer} label={"Offer"} />
+          <NavItem to={"/"} icon={FaHandsHelping} label={"Help"} />
+          <NavItem to={"/login"} icon={FaRegUser} label={"Sign In"} />
+          <NavItem to={"/"} icon={FaCartArrowDown} label={"Cart"} />
         </ul>
       </div>
     </div>
