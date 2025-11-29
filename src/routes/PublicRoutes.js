@@ -1,11 +1,11 @@
 import { Suspense, lazy } from "react";
 import React from "react";
 import RestaurantList from "../features/restaurant/RestaurantList.js";
-import LoginPage from "../pages/LoginPage";
 import { createBrowserRouter, Outlet } from "react-router";
 import HomePageHeader from "../layouts/components/public/Header.js";
 import LandingLayout from "../layouts/LandingLayout.js";
-import NotFoundPage from "../pages/NotFoundPage";
+import NotFoundPage from "../pages/NotFoundPage.js";
+import RestaurantMenu from "../features/restaurant/RestaurantMenu.js";
 
 export const appRouter = createBrowserRouter([
   {
@@ -21,8 +21,8 @@ export const appRouter = createBrowserRouter([
         element: <RestaurantList />,
       },
       {
-        path: "/login",
-        element: <LoginPage />,
+        path: "/restaurant-detail",
+        element: <RestaurantMenu />,
       },
       {
         path: "/offer",

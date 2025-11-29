@@ -1321,3 +1321,155 @@ export const foodData = [
     },
   },
 ];
+
+export const MenuData = [
+  {
+    card: {
+      card: {
+        "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+        info: {
+          id: "937167",
+          name: "Haldiram's Restaurant",
+          city: "Indore",
+          slugs: {
+            restaurant: "haldiram's-restaurant-new-palasia-new-palasia",
+            city: "indore",
+          },
+          uniqueId: "e51e6528-4859-48c8-8fed-e84c17dc2d76",
+          cloudinaryImageId:
+            "RX_THUMBNAIL/IMAGES/VENDOR/2025/11/27/c45e7166-7228-4540-9e15-3c3773a90db3_937167.JPG",
+          locality: "HIGH STREET",
+          areaName: "Bypass South",
+          costForTwo: "40000",
+          costForTwoMessage: "₹400 for two",
+          cuisines: ["North Indian", "Chaat"],
+          avgRating: 4.3,
+          veg: true,
+          feeDetails: {
+            restaurantId: "937167",
+            fees: [{}],
+          },
+          parentId: "351771",
+          avgRatingString: "4.3",
+          totalRatingsString: "2.1K+ ratings",
+          sla: {
+            restaurantId: "937167",
+            slaString: "30-35 MINS",
+            lastMileTravelString: "3.0 km",
+            iconType: "ICON_TYPE_EMPTY",
+          },
+        },
+        analytics: {},
+      },
+    },
+  },
+  {
+    card: {
+      card: {
+        "@type": "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget",
+        id: "offerCollectionWidget_UX4",
+        gridElements: {
+          infoWithStyle: {
+            "@type":
+              "type.googleapis.com/swiggy.presentation.food.v2.OfferInfoWithStyle",
+            offers: [
+              {
+                info: {
+                  header: "ITEMS AT ₹99",
+                  offerTag: "DEAL OF DAY",
+                  offerTagColor: "#E46D47",
+                  offerIds: ["13b2dfb7-7613-4a69-b355-c23f4611d5b6"],
+                  expiryTime: "1970-01-01T00:00:00Z",
+                  description: "ON SELECT ITEMS |",
+                  offerType: "offers",
+                  restId: "937167",
+                  offerLogo: "offers/deal-of-day",
+                  descriptionTextColor: "#7302060C",
+                },
+                cta: {
+                  type: "OFFER_HALF_CARD",
+                },
+              },
+              {
+                info: {
+                  header: "FLAT ₹125 OFF",
+                  offerTag: "FLAT DEAL",
+                  offerTagColor: "#E46D47",
+                  offerIds: ["ad90cc20-906e-4e4b-a914-03cc1d3d8279"],
+                  expiryTime: "1970-01-01T00:00:00Z",
+                  couponCode: "USE FLAVORFUL",
+                  description: "ABOVE ₹249",
+                  offerType: "offers",
+                  restId: "937167",
+                  offerLogo: "offers/generic",
+                  descriptionTextColor: "#7302060C",
+                  primaryDescription: "USE FLAVORFUL",
+                },
+                cta: {
+                  type: "OFFER_HALF_CARD",
+                },
+              },
+              {
+                info: {
+                  header: "FLAT ₹150 OFF",
+                  offerTag: "DEFAULT",
+                  offerTagColor: "#E46D47",
+                  offerIds: ["38af5986-b090-4ac4-bc5b-d564b0b19e0a"],
+                  expiryTime: "1970-01-01T00:00:00Z",
+                  couponCode: "USE MEALDEAL",
+                  description: "ABOVE ₹299",
+                  offerType: "offers",
+                  restId: "937167",
+                  offerLogo: "offers/generic",
+                  descriptionTextColor: "#7302060C",
+                  primaryDescription: "USE MEALDEAL",
+                },
+                cta: {
+                  type: "OFFER_HALF_CARD",
+                },
+              },
+              {
+                info: {
+                  header: "FLAT ₹150 OFF",
+                  offerTag: "FLAT DEAL",
+                  offerTagColor: "#E46D47",
+                  offerIds: ["23a0e276-19f3-444e-b6f7-c03e21ff228c"],
+                  expiryTime: "1970-01-01T00:00:00Z",
+                  couponCode: "USE FLAT150",
+                  description: "ABOVE ₹399",
+                  offerType: "offers",
+                  restId: "937167",
+                  offerLogo: "offers/generic",
+                  descriptionTextColor: "#7302060C",
+                  primaryDescription: "USE FLAT150",
+                },
+                cta: {
+                  type: "OFFER_HALF_CARD",
+                },
+              },
+              {
+                info: {
+                  header: "FLAT ₹550 OFF",
+                  offerTag: "DEFAULT",
+                  offerTagColor: "#E46D47",
+                  offerIds: ["cd971694-3492-4c9b-80d0-f8c3bd13a756"],
+                  expiryTime: "1970-01-01T00:00:00Z",
+                  couponCode: "USE FLAT550",
+                  description: "ABOVE ₹2999",
+                  offerType: "offers",
+                  restId: "937167",
+                  offerLogo: "offers/generic",
+                  descriptionTextColor: "#7302060C",
+                  primaryDescription: "USE FLAT550",
+                },
+                cta: {
+                  type: "OFFER_HALF_CARD",
+                },
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
+];

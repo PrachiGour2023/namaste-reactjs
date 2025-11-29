@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import safeJsonParse from "../utils/safeJsonParse";
 
 export default function useFetch(url, options) {
   const [data, setData] = useState(null);
@@ -9,8 +10,9 @@ export default function useFetch(url, options) {
     if (!url) return;
     let cancelled = false;
     setLoading(true);
+
     fetch(url, options)
-      .then((r) => r.json())
+      .then((r) => safeJsonParse(r))
       .then((d) => {
         if (!cancelled) setData(d);
       })
@@ -20,6 +22,7 @@ export default function useFetch(url, options) {
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
+
     return () => {
       cancelled = true;
     };

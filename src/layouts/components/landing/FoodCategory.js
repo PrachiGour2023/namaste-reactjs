@@ -3,25 +3,26 @@ import { landing_page_api_url, image_cdn_url } from "../../../utils/constant";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
 import { Link } from "react-router";
+import { useRestaurantData } from "../../../hooks/useRestaurantData";
 
 const FoodCategory = () => {
-  const [appData, setAppData] = useState([]);
   const { scrollRef, scroll } = useCarouselScroll();
 
-  useEffect(() => {
-    fetchLandingPageApi();
-  }, []);
+  const restaurantData = useRestaurantData();
+  if (!restaurantData?.cards?.[0]) return null;
 
-  const fetchLandingPageApi = async () => {
-    const response = await fetch(landing_page_api_url);
-    const data = await response.json();
-    setAppData(data?.data?.cards[0]?.card?.card);
-  };
+  const {
+    cards: {
+      [0]: {
+        card: { card: section },
+      },
+    },
+  } = restaurantData;
 
   return (
     <div>
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-bold my-5">{appData?.header?.title}</h3>
+        <h3 className="text-xl font-bold my-5">{section?.header?.title}</h3>
         <div>
           <button
             onClick={() => scroll("left")}
@@ -43,12 +44,10 @@ const FoodCategory = () => {
         ref={scrollRef}
         className="flex gap-10 overflow-x-auto overflow-x-hidden scroll-smooth scrollbar-hide snap-x snap-mandatory px-12"
       >
-        {appData?.imageGridCards?.info?.map((item) => {
+        {section?.imageGridCards?.info?.map((item) => {
           const queryString = item?.entityId?.split("?")[1];
           const params = new URLSearchParams(queryString);
           const collection_id = params.get("collection_id");
-          console.log(collection_id);
-
           return (
             <div
               key={item?.id}
