@@ -1,27 +1,27 @@
 import { useState, useEffect } from "react";
-import { landing_page_api_url } from "../../../utils/constant";
 import CommonListUI from "./CommonListUI";
 import { IoIosArrowDown } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 const RestaurantOfVariousCities = () => {
   const [appData, setAppData] = useState(null);
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    fetchLandingPageApi();
-  }, [showAll]);
+  const landingData = useSelector(
+    (state) => state?.landing?.featuredRestaurants
+  );
 
-  const fetchLandingPageApi = async () => {
-    const response = await fetch(landing_page_api_url);
-    const data = await response.json();
-    setAppData(data?.data?.cards[6]?.card?.card);
-  };
+  useEffect(() => {
+    setAppData(landingData.cards?.[6]?.card?.card);
+  }, [showAll, landingData]);
 
   const visibleData = showAll ? appData?.brands : appData?.brands?.slice(0, 11);
 
   return (
     <div>
-      <h3 className="text-xl font-bold my-5">{appData?.title}</h3>
+      <h3 className="text-xl font-bold my-5 dark:text-white">
+        {appData?.title}
+      </h3>
       <div className="grid grid-cols-4 gap-6 my-10">
         {visibleData?.map((brand, index) => (
           <div key={index}>

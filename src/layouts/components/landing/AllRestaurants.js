@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { image_cdn_url, landing_page_api_url } from "../../../utils/constant";
+import { image_cdn_url } from "../../../utils/constant";
 import { IoStar } from "react-icons/io5";
+import { useRestaurantData } from "../../../hooks/useRestaurantData";
+import { useSelector } from "react-redux";
 
 const AllRestaurants = () => {
-  const [appData, setAppData] = useState([]);
-
-  useEffect(() => {
-    fetchLandingPageApi();
-  }, []);
-
-  const fetchLandingPageApi = async () => {
-    const response = await fetch(landing_page_api_url);
-    const data = await response.json();
-    setAppData(data?.data);
-  };
+  const landingData = useSelector(
+    (state) => state?.landing?.featuredRestaurants
+  );
 
   return (
     <div>
-      <h3 className="text-xl font-bold my-5">
-        {appData?.cards?.[2]?.card?.card?.title}
+      <h3 className="text-xl font-bold my-5 dark:text-white">
+        {landingData?.cards?.[2]?.card?.card?.title}
       </h3>
       <div className="grid grid-cols-4 gap-6 my-6">
-        {appData?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
+        {landingData?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
           (restaurant, index) => (
             <div key={index}>
               <img
@@ -30,8 +23,10 @@ const AllRestaurants = () => {
                 alt={""}
               />
               <div className="self-start">
-                <h3 className="font-bold">{restaurant?.info?.name}</h3>
-                <div className="flex items-center gap-1">
+                <h3 className="font-bold dark:text-white">
+                  {restaurant?.info?.name}
+                </h3>
+                <div className="flex items-center gap-1 dark:text-white">
                   <p className="flex items-center gap-1">
                     <IoStar color="green" />
                     {restaurant?.info?.avgRating}
@@ -41,11 +36,11 @@ const AllRestaurants = () => {
                     {restaurant?.info?.sla?.slaString}
                   </p>
                 </div>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm dark:text-gray-300">
                   {restaurant?.info?.cuisines?.join(", ").substring(0, 30)}
                   {"... "}
                 </p>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-sm dark:text-gray-300">
                   {restaurant?.info?.areaName}
                 </p>
               </div>

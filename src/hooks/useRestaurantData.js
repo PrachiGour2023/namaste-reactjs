@@ -6,7 +6,7 @@ export const useRestaurantData = () => {
 
   useEffect(() => {
     fetchRestaurantData();
-  });
+  }, []);
 
   const fetchRestaurantData = async () => {
     try {

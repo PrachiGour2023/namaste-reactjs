@@ -5,12 +5,24 @@ import { createBrowserRouter, Outlet } from "react-router";
 import HomePageHeader from "../layouts/components/public/Header.js";
 import LandingLayout from "../layouts/LandingLayout.js";
 import NotFoundPage from "../pages/NotFoundPage.js";
-import RestaurantMenu from "../features/restaurant/RestaurantMenu.js";
+import { ThemeProvider } from "../context/themeContext.js";
+import { Provider } from "react-redux";
+import { appStore } from "../redux/store/appStore.js";
+
+const RestaurantMenu = lazy(() =>
+  import("../features/restaurant/RestaurantMenu.js")
+);
+
+const CartItems = lazy(() => import("../features/cart/CartItems.js"));
 
 export const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <PublicLayout />,
+    element: (
+      <ThemeProvider>
+        <PublicLayout />
+      </ThemeProvider>
+    ),
     children: [
       {
         path: "/",
@@ -25,8 +37,20 @@ export const appRouter = createBrowserRouter([
         element: <RestaurantMenu />,
       },
       {
+        path: "/cart",
+        element: (
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <CartItems />
+          </Suspense>
+        ),
+      },
+      {
         path: "/offer",
-        element: <RestaurantList />,
+        element: (
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <RestaurantMenu />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <NotFoundPage />,
@@ -35,10 +59,10 @@ export const appRouter = createBrowserRouter([
 
 function PublicLayout() {
   return (
-    <>
+    <Provider store={appStore}>
       <HomePageHeader />
       <Outlet />
-    </>
+    </Provider>
   );
 }
 

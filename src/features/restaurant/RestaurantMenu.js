@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { MenuData } from "../../utils/constant";
 import { IoStar } from "react-icons/io5";
+import ResturantMenuCategory from "./RestaurantMenuCategory";
 
 const RestaurantMenu = () => {
+  const [menuIndex, setMenuIndex] = useState(0);
+  const filteredData = MenuData?.filter(
+    (menu) =>
+      menu?.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
   return (
     <div className="mx-70 my-10">
       <p className="text-2xl font-bold">
@@ -34,24 +41,32 @@ const RestaurantMenu = () => {
         </p>
       </div>
       <p className="text-2xl font-bold">Deals for you</p>
-      <div>
-        <div>
-          {MenuData[1]?.card?.card?.gridElements?.infoWithStyle?.offers?.map(
-            (item, i) => (
-              <div
-                key={i}
-                className="flex justify-between items-center border-b border-gray-200 py-5"
-              >
-                <div>
-                  <p className="font-bold">{item?.info?.header}</p>
-                  <p className="text-sm text-gray-600">
-                    {item?.info?.description}
-                  </p>
-                </div>
+      <div className="flex justify-between my-6">
+        {MenuData[1]?.card?.card?.gridElements?.infoWithStyle?.offers?.map(
+          (item, i) => (
+            <div
+              key={i}
+              className="justify-between items-center border-1 border-gray-300 px-5 py-2 rounded-2xl"
+            >
+              <div>
+                <p className="font-bold text-sm">{item?.info?.header}</p>
+                <p className="text-xs text-gray-600 font-medium">
+                  {item?.info?.description}
+                </p>
               </div>
-            )
-          )}
-        </div>
+            </div>
+          )
+        )}
+      </div>
+      <div className="border border-gray-300 p-5 rounded-lg my-10">
+        {filteredData.map((item, i) => (
+          <ResturantMenuCategory
+            key={i}
+            data={item}
+            collapseMenu={i === menuIndex} //lifting state up
+            setMenuIndex={() => setMenuIndex(menuIndex === i ? null : i)} //lifting state up
+          />
+        ))}
       </div>
     </div>
   );

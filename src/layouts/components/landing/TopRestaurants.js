@@ -1,26 +1,29 @@
-import { useState, useEffect } from "react";
 import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
-import { landing_page_api_url, image_cdn_url } from "../../../utils/constant";
+import { image_cdn_url } from "../../../utils/constant";
 import { IoChevronBack, IoChevronForward, IoStar } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const TopRestaurants = () => {
-  const [appData, setAppData] = useState([]);
   const { scrollRef, scroll } = useCarouselScroll();
+  const landingData = useSelector(
+    (state) => state?.landing?.featuredRestaurants
+  );
+  if (!landingData?.cards?.[1]) return null;
 
-  useEffect(() => {
-    fetchLandingPageApi();
-  }, []);
-
-  const fetchLandingPageApi = async () => {
-    const response = await fetch(landing_page_api_url);
-    const data = await response.json();
-    setAppData(data?.data?.cards[1]?.card?.card);
-  };
+  const {
+    cards: {
+      [1]: {
+        card: { card: section },
+      },
+    },
+  } = landingData;
 
   return (
     <div>
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-bold my-5">{appData?.header?.title}</h3>
+        <h3 className="text-xl font-bold my-5 dark:text-white">
+          {section?.header?.title}
+        </h3>
         <div>
           <button
             onClick={() => scroll("left")}
@@ -42,7 +45,7 @@ const TopRestaurants = () => {
         ref={scrollRef}
         className="flex gap-10 overflow-x-auto overflow-x-hidden scroll-smooth scrollbar-hide snap-x snap-mandatory px-12 my-10"
       >
-        {appData?.gridElements?.infoWithStyle?.restaurants?.map(
+        {section?.gridElements?.infoWithStyle?.restaurants?.map(
           (restaurant) => (
             <div
               key={restaurant?.info?.id}
@@ -54,8 +57,10 @@ const TopRestaurants = () => {
                 className="w-80 h-40 object-cover rounded-lg"
               />
               <div className="self-start">
-                <h3 className="font-bold">{restaurant?.info?.name}</h3>
-                <div className="flex items-center gap-1">
+                <h3 className="font-bold dark:text-white">
+                  {restaurant?.info?.name}
+                </h3>
+                <div className="flex items-center gap-1 dark:text-white">
                   <p className="flex items-center gap-1">
                     <IoStar color="green" />
                     {restaurant?.info?.avgRating}
@@ -65,11 +70,11 @@ const TopRestaurants = () => {
                     {restaurant?.info?.sla?.slaString}
                   </p>
                 </div>
-                <p className="text-gray-600 text-md">
+                <p className="text-gray-600 text-md dark:text-gray-300">
                   {restaurant?.info?.cuisines?.join(", ").substring(0, 30)}
                   {"... "}
                 </p>
-                <p className="text-gray-600 text-md">
+                <p className="text-gray-600 text-md dark:text-gray-300">
                   {restaurant?.info?.areaName}
                 </p>
               </div>

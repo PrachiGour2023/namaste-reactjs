@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { landing_page_api_url, image_cdn_url } from "../../../utils/constant";
+import { image_cdn_url } from "../../../utils/constant";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
 import { Link } from "react-router";
-import { useRestaurantData } from "../../../hooks/useRestaurantData";
+import { useSelector } from "react-redux";
 
 const FoodCategory = () => {
   const { scrollRef, scroll } = useCarouselScroll();
-
-  const restaurantData = useRestaurantData();
-  if (!restaurantData?.cards?.[0]) return null;
+  const landingData = useSelector(
+    (state) => state?.landing?.featuredRestaurants
+  );
+  if (!landingData?.cards?.[0]) return null;
 
   const {
     cards: {
@@ -17,12 +17,14 @@ const FoodCategory = () => {
         card: { card: section },
       },
     },
-  } = restaurantData;
+  } = landingData;
 
   return (
     <div>
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-bold my-5">{section?.header?.title}</h3>
+        <h3 className="text-xl font-bold my-5 dark:text-white">
+          {section?.header?.title}
+        </h3>
         <div>
           <button
             onClick={() => scroll("left")}

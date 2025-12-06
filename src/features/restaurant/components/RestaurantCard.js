@@ -20,21 +20,37 @@ function RestaurantCard(props) {
         }
       />
       <div className="justify-start">
-        <span className="text-lg font-bold">{info?.name}</span>
+        <span className="text-lg font-bold dark:text-white">{info?.name}</span>
         <br />
-        <span className="flex items-center">
+        <span className="flex items-center dark:text-white">
           <IoStar color="green" />
           {info?.avgRating} .{" "}
           <span className="font-medium">{info?.sla?.slaString}</span>
         </span>
-        <span className="text-gray-700">
+        <span className="text-gray-700 dark:text-gray-300">
           {info?.cuisines.join(", ").substring(0, 35)}
           {"... "}
         </span>
-        <span className="text-gray-700">{info?.areaName}</span>
+        <br />
+        <span className="text-gray-700 dark:text-gray-300">
+          {info?.areaName}
+        </span>
       </div>
     </div>
   );
 }
 
 export default RestaurantCard;
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-gray-950 text-sm font-bold rounded-md p-1 text-white">
+          Promoted
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};

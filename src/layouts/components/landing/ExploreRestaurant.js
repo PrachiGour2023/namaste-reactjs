@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { landing_page_api_url } from "../../../utils/constant";
 import CommonListUI from "./CommonListUI";
+import { useRestaurantData } from "../../../hooks/useRestaurantData";
 
 const ExploreRestaurant = () => {
-  const [appData, setAppData] = useState([]);
+  const restaurantData = useRestaurantData();
+  if (!restaurantData.cards) return null;
+  const {
+    cards: {
+      [8]: {
+        card: { card: section },
+      },
+    },
+  } = restaurantData;
 
-  useEffect(() => {
-    fetchLandingPageApi();
-  }, []);
-
-  const fetchLandingPageApi = async () => {
-    const response = await fetch(landing_page_api_url);
-    const data = await response.json();
-    setAppData(data?.data?.cards[8]?.card?.card);
-  };
   return (
     <div>
-      <h3 className="text-xl font-bold my-5">{appData?.title}</h3>
+      <h3 className="text-xl font-bold my-5 dark:text-white">
+        {section?.title}
+      </h3>
       <div className="grid grid-cols-4 gap-6 my-10">
-        {appData?.brands?.map((brand, index) => (
+        {section?.brands?.map((brand, index) => (
           <div key={index}>
             <CommonListUI title={brand?.text} link={brand?.link} />
           </div>
